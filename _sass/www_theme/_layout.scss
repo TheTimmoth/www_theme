@@ -288,6 +288,7 @@
 
 .post-content {
   margin-bottom: $spacing-unit;
+  text-align: justify;
 
   h2 {
     @include relative-font-size(2);
@@ -323,14 +324,15 @@
   clear: left;
 
   @include media-query($on-palm) {
-    margin-left: $spacing-unit;
-    margin-right: $spacing-unit;
-  }
-
-  @include media-query($on-tiny) {
     margin-left: $spacing-unit/2;
     margin-right: $spacing-unit/2;
+    padding: $spacing-unit/3 $spacing-unit/1.5;
   }
+
+  // @include media-query($on-tiny) {
+  //   margin-left: $spacing-unit/2;
+  //   margin-right: $spacing-unit/2;
+  // }
 }
 
 
