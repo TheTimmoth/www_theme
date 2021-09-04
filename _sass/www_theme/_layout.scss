@@ -342,10 +342,8 @@
  */
  .paginator-image {
   float: left;
-  height: 75px;
   width: 75px;
-  margin-left: $spacing-unit;
-  margin-right: $spacing-unit;
+  margin: $spacing-unit/4.5 $spacing-unit;
 
   // @include media-query($on-palm) {
   //   height: $spacing-unit*1.5;
@@ -363,4 +361,5 @@
   min-height: 160px;
   padding: $spacing-unit/3 $spacing-unit/1.8;
   margin: 0 $spacing-unit/3;
+  text-align: justify;
 }
