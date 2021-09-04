@@ -17,7 +17,7 @@ layout: default
               itemprop="name">{{ page.author }}</span></span>
         {%- endif -%}
         {%- if date != update -%}
-          &nbsp;•&nbsp;{%- if site.language == "de" -%} Zuletzt aktualisiert: {%- else -%} Last updated: {%- endif -%}&nbsp;{{ page.update | date: date_format }}
+          &nbsp;•&nbsp;{%- if site.lang == "de" -%} Zuletzt aktualisiert: {%- else -%} Last updated: {%- endif -%}&nbsp;{{ page.update | date: date_format }}
         {%- endif -%}
       </time>
     </p>
