@@ -14,16 +14,21 @@
 }
 
 .site-title {
-  @include relative-font-size(1.625);
+  text-align: center;
+  font-size: $spacing-unit*2;
+  line-height: 125px;
   font-weight: 300;
-  line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
-  margin-bottom: 0;
-  float: left;
+  margin-right: $spacing-unit*1.9;
+  color: $brand-color;
 
-  &,
-  &:visited {
-    color: $grey-color-dark;
+  @include media-query($on-palm) {
+  font-size: $spacing-unit*1.2;
+  line-height: 98px;
+  }
+
+  @include media-query($on-tiny) {
+    display: none;
   }
 }
 
