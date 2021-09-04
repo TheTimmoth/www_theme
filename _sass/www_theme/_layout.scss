@@ -2,12 +2,15 @@
  * Site header
  */
 .site-header {
-  border-top: 5px solid $grey-color-dark;
-  border-bottom: 1px solid $grey-color-light;
-  min-height: $spacing-unit * 1.865;
+  text-align: center;
+  height: 200px;
 
-  // Positioning context for the mobile navigation icon
-  position: relative;
+  @include media-query($on-palm) {
+    height: 100px;
+  }
+
+  padding-bottom: 5px;
+  border-bottom: 1px solid $grey-color-light;
 }
 
 .site-title {
@@ -24,40 +27,75 @@
   }
 }
 
-.site-nav {
-  float: right;
-  line-height: $base-line-height * $base-font-size * 2.25;
+.site-title-image {
+  float: left;
+  height: $spacing-unit*2.75;
+  width: $spacing-unit*2.75;
+  margin-bottom: $spacing-unit;
+  margin-top: $spacing-unit;
 
-  .nav-trigger {
-      display: none;
+  @include media-query($on-palm) {
+    height: $spacing-unit*1.5;
+    width: $spacing-unit*1.5;
   }
 
-  .menu-icon {
+  @include media-query($on-tiny) {
+    margin-right: $spacing-unit*1.9;
+    float: none;
+  }
+}
+
+.site-nav {
+  overflow: hidden;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  @include media-query($on-palm) {
     display: none;
   }
 
-  .page-link {
-    color: $text-color;
-    line-height: $base-line-height;
+  a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    background-color: $grey-color-light;
+    color: $brand-color;
+    &:first-child {
+      margin-left: 0;
+    }
+    margin-left: 10px;
 
-    // Gaps between nav items, but not on the last one
-    &:not(:last-child) {
-      margin-right: 20px;
+    right {
+      float: right;
+    }
+
+    &:hover {
+      background-color: #ddd;
+      color: darken($brand-color, 10%);
     }
   }
+}
+
+.site-nav-button {
+  @include relative-font-size(1);
+  line-height: $base-font-size * 1.625;
+  display: none;
 
   @include media-query($on-palm) {
-    position: absolute;
-    top: 9px;
     right: $spacing-unit / 2;
     background-color: $background-color;
     border: 1px solid $grey-color-light;
     border-radius: 5px;
-    text-align: right;
+    text-align: left;
+    width: fit-content;
+    top: $spacing-unit;
+    display: unset;
+    position: absolute;
 
     label[for="nav-trigger"] {
       display: block;
-      float: right;
+      float: left;
       width: 36px;
       height: 36px;
       z-index: 2;
@@ -66,7 +104,7 @@
 
     .menu-icon {
       display: block;
-      float: right;
+      float: left;
       width: 36px;
       height: 26px;
       line-height: 0;
@@ -226,6 +264,23 @@
   }
 }
 
+.post-title-image {
+  float: left;
+  height: 75px;
+  margin-left: $spacing-unit/3;
+  margin-right: $spacing-unit;
+  margin-bottom: $spacing-unit/3*2;
+
+  // @include media-query($on-palm) {
+  //   margin-right: 30px;
+  // }
+
+  // @include media-query($on-tiny) {
+  //   margin-right: $spacing-unit*1.9;
+  //   float: none;
+  // }
+}
+
 .post-content {
   margin-bottom: $spacing-unit;
 
@@ -252,4 +307,53 @@
       @include relative-font-size(1.125);
     }
   }
+}
+
+.post-toc {
+  background-color: $background-color-light;
+  padding: $spacing-unit/3 $spacing-unit;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  margin: $spacing-unit*1.1 $spacing-unit*5/3;
+  clear: left;
+
+  @include media-query($on-palm) {
+    margin-left: $spacing-unit;
+    margin-right: $spacing-unit;
+  }
+
+  @include media-query($on-tiny) {
+    margin-left: $spacing-unit/2;
+    margin-right: $spacing-unit/2;
+  }
+}
+
+
+
+/**
+ * Paginator
+ */
+ .paginator-image {
+  float: left;
+  height: 75px;
+  width: 75px;
+  margin-left: $spacing-unit;
+  margin-right: $spacing-unit;
+
+  // @include media-query($on-palm) {
+  //   height: $spacing-unit*1.5;
+  //   width: $spacing-unit*1.5;
+  // }
+
+  // @include media-query($on-tiny) {
+  //   margin-right: $spacing-unit*1.9;
+  //   float: none;
+  // }
+}
+
+.paginator-post {
+  background-color: $background-color-light;
+  min-height: 160px;
+  padding: $spacing-unit/3 $spacing-unit/1.8;
+  margin: 0 $spacing-unit/3;
 }
