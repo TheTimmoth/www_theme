@@ -356,6 +356,14 @@
   // }
 }
 
+.paginator-link {
+  color: $text-color;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .paginator-post {
   background-color: $background-color-light;
   min-height: 160px;
