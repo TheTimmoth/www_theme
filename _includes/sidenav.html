@@ -1,0 +1,23 @@
+{%- if site.header_pages -%}
+  <div id="sidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {%- for path in site.header_pages -%}
+      {%- assign my_page = site.pages | where: "path", path | first -%}
+      {%- if my_page.title == "About" or my_page.title == "Impressum" -%}
+        <a class="page-link" style="text-decoration: none;" rel="author" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
+      {%- elsif my_page.title-%}
+        <a class="page-link" style="text-decoration: none;" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("sidenav").style.width = "170px";
+    }
+
+    function closeNav() {
+      document.getElementById("sidenav").style.width = "0";
+    }
+  </script>
+{%- endif -%}
