@@ -4,7 +4,7 @@ layout: home
 
   <!-- This loops through the paginated posts -->
   {% for post in paginator.posts %}
-  <a href="{{ post.url | relative_url }}" class="paginator-link">
+  <a href="{{ post.url | relative_url }}" class="paginator-link-container">
     <div class="paginator-post">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       <span class="post-meta">{{ post.date | date: date_format }}</span>
@@ -28,17 +28,21 @@ layout: home
 
   <!-- Pagination links -->
   {% if paginator.total_pages > 1 %}
-  <div class="pagination">
+  <div class="paginator-previous-next">
     {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous">
-      Previous
+    <a href="{{ paginator.previous_page_path }}">
+      {%- if site.lang == "de" -%}Zurück{%- else -%}Previous{%- endif -%}
     </a>
+    {% else %}
+      <span style="opacity: 0;"></span>
     {% endif %}
-    <span class="page_number ">
-      Page: {{ paginator.page }} of {{ paginator.total_pages }}
+    <span>
+      {%- if site.lang == "de" -%}Seite{%- else -%}Page{%- endif -%}&nbsp;{{ paginator.page }}&nbsp;{%- if site.lang == "de" -%}von{%- else -%}of{%- endif -%}&nbsp;{{ paginator.total_pages }}
     </span>
     {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+    <a href="{{ paginator.next_page_path }}">{%- if site.lang == "de" -%}Weiter{%- else -%}Next{%- endif -%}</a>
+    {% else %}
+      <span style="opacity: 0;"></span>
     {% endif %}
   {% endif %}
   </div>
