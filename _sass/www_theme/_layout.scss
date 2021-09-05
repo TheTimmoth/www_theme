@@ -366,8 +366,44 @@
 
 .paginator-post {
   background-color: $background-color-light;
+
   min-height: 160px;
   padding: $spacing-unit/3 $spacing-unit/1.8;
   margin: 0 $spacing-unit/3;
+
   text-align: justify;
+
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 1ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    opacity: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    -webkit-transition: all 1ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 1ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  &:hover {
+    -webkit-transform: scale(1.005, 1.005);
+    transform: scale(1.005, 1.005);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  @include media-query($on-palm) {
+
+  }
 }
