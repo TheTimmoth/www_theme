@@ -72,20 +72,14 @@
 
   function resizeHeader() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50 || document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
-      // document.getElementById("content").style.marginTop = "200px";
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-small }}";
-      document.getElementById("navbar-logo").style.minHeight = "{{ site.data.style.header.logo-size-small }}";
-      document.getElementById("navbar-logo").style.minWidth = "{{ site.data.style.header.logo-size-small }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
       document.getElementById("navbar-links").style.display = "none";
       document.getElementById("navbar-menu-icon").style.opacity = "1";
       document.getElementById("navbar-menu-icon").style.cursor = "pointer"
       document.getElementById("navbar-menu-icon").tabIndex = "0"
     } else {
-      // document.getElementById("content").style.marginTop = "300px";
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
-      document.getElementById("navbar-logo").style.minHeight = "{{ site.data.style.header.logo-size-large }}";
-      document.getElementById("navbar-logo").style.minWidth = "{{ site.data.style.header.logo-size-large }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
       document.getElementById("navbar-links").style.display = "block";
       document.getElementById("navbar-menu-icon").style.opacity = "0";
@@ -96,7 +90,7 @@
       }
     }
     if (document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
-      document.getElementById("navbar-logo").style.flex = "auto";
+      document.getElementById("navbar-logo").style.flex = "1 0 auto";
       document.getElementById("navbar-title").style.display = "none";
     } else {
       document.getElementById("navbar-logo").style.flex = "none";
