@@ -63,7 +63,6 @@
   </div>
 </header>
 
-
 <script>
   window.onscroll = function () { resizeHeader() };
   window.onload = function () { headerLoad() };
@@ -91,7 +90,11 @@
       if (sidebarOpen == 1) {
         changeNav(document.getElementById("navbar-menu-icon"))
       }
-
+    }
+    if (document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
+      document.getElementById("navbar-title").style.display = "none";
+    } else {
+      document.getElementById("navbar-title").style.display = "block";
     }
   }
 

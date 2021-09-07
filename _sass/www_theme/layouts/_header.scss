@@ -2,7 +2,7 @@ $transition: 0.3s;
 
 #header {
   position: fixed; /* Sticky/fixed navbar */
-  overflow: hidden;
+  overflow: visible;
   width: calc(100vw - (#{$spacing-unit} * 2));
   max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
   top: 0;
@@ -57,7 +57,7 @@ $transition: 0.3s;
 
 #navbar-logo {
   // position: absolute;
-  flex: none;
+  flex: auto;
   height: $logo-size-large;
   margin: 0 $spacing-unit;
 }

@@ -18,13 +18,13 @@
   // }
 }
 
-.main-grid {
-  display: grid;
-  grid-template-areas:
-    'header  header  header  header  header'
-    'content content content content content'
-    'footer  footer  footer  footer  footer';
-}
+// .main-grid {
+//   display: grid;
+//   grid-template-areas:
+//     'header  header  header  header  header'
+//     'content content content content content'
+//     'footer  footer  footer  footer  footer';
+// }
 
 .header {
   grid-area: header;

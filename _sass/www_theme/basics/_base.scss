@@ -9,7 +9,6 @@ body {
   font-feature-settings: "kern" 1;
   font-kerning: normal;
   min-height: 100vh;
-  min-width: $content-width/2;
 }
 
 main {
@@ -52,8 +51,7 @@ img {
 
 figure > img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80vw;
 }
 
 figcaption {
