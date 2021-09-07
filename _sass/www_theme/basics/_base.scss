@@ -1,0 +1,161 @@
+/**********************************************************
+ * General
+ **********************************************************/
+
+body {
+  background-color: $background-color;
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  color: $text-color;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  min-height: 100vh;
+  min-width: $content-width/2;
+}
+
+main {
+  display: block; // Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+// Clearfix
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+// Reset some basic elements
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+// Set `margin-bottom` to maintain vertical rhythm
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+  margin-bottom: 0.5em;
+}
+
+
+/**********************************************************
+ * Figures, images and icons
+ **********************************************************/
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+figure > img {
+  display: block;
+}
+
+figcaption {
+  text-align: center;
+  font-size: $small-font-size;
+  color: $grey-color;
+  padding-top: 5px;
+}
+
+
+/**********************************************************
+ * Headings and paragraphs
+ **********************************************************/
+
+h1, h2, h3, h4, h5, h6 {
+  // font-weight: $base-font-weight*3/4;
+  font-weight: $base-font-weight;
+}
+
+h1 {
+  @include relative-font-size(2);
+}
+
+h2 {
+  @include relative-font-size(1.8);
+}
+
+
+h3 {
+  @include relative-font-size(1.6);
+}
+
+
+h4 {
+  @include relative-font-size(1.4);
+}
+
+
+h5 {
+  @include relative-font-size(1.2);
+}
+
+
+h6 {
+  @include relative-font-size(1);
+}
+
+
+p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+
+/**********************************************************
+ * Links
+ **********************************************************/
+
+a {
+  color: $brand-color;
+  text-decoration: none;
+
+  &:visited {
+    color: $brand-color-dark;
+  }
+
+  &:hover {
+    color: $text-color;
+    text-decoration: underline;
+  }
+}
+
+
+/**********************************************************
+ * Lists
+ **********************************************************/
+
+ul, ol {
+  margin-left: $spacing-unit;
+}
+
+
+/**********************************************************
+ * Code formatting
+ **********************************************************/
+
+pre, code {
+  @include relative-font-size(0.9375);
+  border: 1px solid $grey-color-light;
+  border-radius: $border-radius;
+  background-color: #eef;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+
+  > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

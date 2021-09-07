@@ -1,0 +1,8 @@
+<figure class="figure">
+  <img class="shadow" src="{{ include.url }}" alt="{{ include.caption }}">
+  <figcaption>{{ include.caption }}</figcaption>
+</figure>
+
+{%- comment -%}
+{% include image_with_caption.html url=page.qr_png caption="QR Code generated as PNG" %}
+{%- endcomment -%}

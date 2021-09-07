@@ -1,0 +1,66 @@
+// .content {
+//   // margin-left: $spacing-unit;
+// }
+
+.paginator-post {
+  display: block;
+  background-color: $background-color-light;
+  color: $text-color;
+}
+
+.paginator-excerpt {
+  @extend %clearfix;
+}
+
+.paginator-excerpt-image {
+  float: left;
+  width: $spacing-unit*5;
+  padding-top: $spacing-unit/5;
+  margin-right: $spacing-unit;
+  margin-bottom: $spacing-unit/3;
+}
+
+.paginator-previous-next {
+  width: fit-content;
+  padding: 5px 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+  color: $text-color;
+  text-decoration: none;
+
+  .box, .button {
+    display: inline-block;
+    width: $spacing-unit*3;
+    background-color: $background-color-dark;
+
+    text-align: center;
+  }
+
+  .invisible-element {
+    display: inline-block;
+    width: $spacing-unit*3;
+  }
+
+  @media screen and (max-width: $on-small) {
+    .box, .button {
+      display: block;
+
+      margin-bottom: $spacing-unit/2;
+
+      :last-child {
+        margin-bottom: 0;
+    }
+    }
+
+    .invisible-element {
+      display: none;
+    }
+  }
+
+  // @media screen and (max-width: $on-tiny) {
+  //   margin-right: $spacing-unit*1.9;
+  //   float: none;
+  // }
+}

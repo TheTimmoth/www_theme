@@ -10,7 +10,7 @@ layout: none
     <link>{{ site.url | xml_escape }}</link>
     <language>en-us</language>
     <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
-    {% for post in site.posts %}
+    {% for post in site.posts -%}
       <item>
         <title>{{ post.title | xml_escape }}</title>
         <description>{{ post.excerpt | xml_escape }}</description>
@@ -18,6 +18,6 @@ layout: none
         <link>{{ site.url }}/{{ post.url | xml_escape }}</link>
         <guid isPermaLink="true">{{ site.url }}/{{ post.url | xml_escape }}</guid>
       </item>
-    {% endfor %}
+    {% endfor -%}
   </channel>
 </rss>

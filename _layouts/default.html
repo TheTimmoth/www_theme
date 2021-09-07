@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: " en" }}">
 
-  {%- include head.html -%}
+{%- include head.html -%}
 
-  <body>
+<body>
 
-    {%- include header.html -%}
-
-    {%- include sidenav.html -%}
-
-    <main id="main" class="page-content" aria-label="Content">
-      <div class="wrapper">
+  <div class="page-content">
+    <div class="main-grid">
+      {%- include header.html -%}
+      <nav class="menu">
+        {%- include side.html -%}
+      </nav>
+      <main class="content" id="content">
         {{ content }}
-      </div>
-    </main>
+      </main>
+      <footer class="footer">
+        {%- include footer.html -%}
+      </footer>
+    </div>
+  </div>
 
-    {%- include footer.html -%}
-
-  </body>
+</body>
 
 </html>

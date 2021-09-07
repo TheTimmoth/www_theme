@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <div>
+      <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+      <p class="meta">
+        {% if page.author %}
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author }}</span>
+        {% endif %}
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {%- assign date = page.date | date: date_format -%}
+        {%- assign update = page.update | date: date_format -%}
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ page.date | date: date_format }}
+        </time>
+        {% if date != update %}
+          <span>
+            {% if site.lang == "de" %}(Zuletzt aktualisiert:{% else %}(Last updated:{% endif %} {{ page.update | date: date_format }})
+          </span>
+        {% endif %}
+      </p>
+    </div>
+    {%- unless page.no_header_image == true -%}
+      <div class="post-excerpt">
+        <img class="post-excerpt-image shadow" src={{ page.header | relative_url }} alt="{{ page.title }} header"></img>
+        <p class="post-excerpt-text"> {{ page.excerpt }} </p>
+      </div>
+      <div class="box post-toc">
+        <h4> Table of contents </h4>
+        {{ content | toc_only }}
+      </div>
+    {%- else -%}
+      <div> {{ page.excerpt }} </div>
+      <div class="box post-toc">
+        <h4>
+          Table of contents </h4>
+        {{ content | toc_only }}
+      </div>
+    {%- endunless -%}
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

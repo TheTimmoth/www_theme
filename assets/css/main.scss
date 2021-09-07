@@ -1,0 +1,14 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+
+{%- for var in site.data.style.misc %}
+${{ var[0] }}: {{ var[1] }};
+{%- endfor %}
+
+{%- for var in site.data.style.header %}
+${{ var[0] }}: {{ var[1] }};
+{%- endfor %}
+
+@import "www_theme";

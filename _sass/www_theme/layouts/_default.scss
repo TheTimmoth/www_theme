@@ -1,0 +1,45 @@
+.page-content {
+  flex: 1;
+}
+
+.wrapper, .main-grid {
+  max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: $spacing-unit;
+  padding-right: $spacing-unit;
+  // @extend %clearfix;
+
+  // @include media-query($on-laptop) {
+  //   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+  //   max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+  //   padding-right: $spacing-unit / 2;
+  //   padding-left: $spacing-unit / 2;
+  // }
+}
+
+.main-grid {
+  display: grid;
+  grid-template-areas:
+    'header  header  header  header  header'
+    'content content content content content'
+    'footer  footer  footer  footer  footer';
+}
+
+.header {
+  grid-area: header;
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.content {
+  grid-area: content;
+  min-height: 33vh;
+  margin-top: 270px;
+}
+
+.footer {
+  grid-area: footer;
+}

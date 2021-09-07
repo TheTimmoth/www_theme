@@ -1,60 +1,48 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+<h2 class="footer-heading">{{ site.title | escape }} &nbsp;<span class="footer-author">&mdash;&nbsp;&nbsp;{%-
+    if site.lang == "de" -%} von {%- else -%} by {%- endif -%}&nbsp;{{ site.author | escape }}</span>
+</h2>
 
-  <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title | escape }} <tc style="color: rgb(190, 190, 190);">&nbsp;&mdash;&nbsp;&nbsp;{%- if site.lang == "de" -%} von {%- else -%} by {%- endif -%}&nbsp;{{ site.author | escape }}</tc></h2>
+<div class="footer-column">
+    <!-- <li class="p-name">
+    {%- if site.author -%}
+      by {{ site.author | escape }}
+    {%- else -%}
+      {{ site.title | escape }}
+    {%- endif -%}
+    </li> -->
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <!-- <li class="p-name">
-            {%- if site.author -%}
-              by {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-          </li> -->
-
-          {%- assign default_paths = site.pages | map: "path" -%}
-          {%- for path in default_paths -%}
-            {%- assign my_page = site.pages | where: "path", path | first -%}
-            {%- if site.lang == "de" -%}
-              {%- if my_page.title == "Impressum" -%}
-                <li>
-                  <a rel="author" href={{ my_page.url | relative_url }}>Kontakt</a>
-                </li>
-                <li>
-                  <a rel="author" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
-                </li>
-              {%- endif -%}
-            {%- else -%}
-              {%- if my_page.title == "About" -%}
-                <li>
-                  <a rel="author" href={{ my_page.url | relative_url }}>Contact</a>
-                </li>
-                <li>
-                  <a rel="author" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
-                </li>
-              {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
-
-          <!-- {%- if site.email -%}
-          <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          {%- endif -%} -->
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
-    </div>
-
+  <div class="footer-column-item">
+    {%- assign default_paths = site.pages | map: "path" -%}
+    {%- for path in default_paths -%}
+    {%- assign my_page = site.pages | where: "path", path | first -%}
+    {%- if site.lang == "de" -%}
+      {%- if my_page.title == "Impressum" -%}
+      <p>
+        <a class="p-name" rel="author" href={{ my_page.url | relative_url }}>Kontakt</a>
+      </p>
+      <p>
+        <a class="p-name" rel="author" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
+      </p>
+      {%- endif -%}
+    {%- else -%}
+      {%- if my_page.title == "About" -%}
+      <p>
+        <a class="p-name" rel="author" href={{ my_page.url | relative_url }}>Contact</a>
+      </p>
+      <p>
+        <a class="p-name" rel="author" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
+      </p>
+      {%- endif -%}
+    {%- endif -%}
+    {%- endfor -%}
   </div>
 
-</footer>
+  <div class="footer-column-item social-media-list">
+  {%- include social.html -%}
+  </div>
+
+  <div class="footer-column-item">
+  <p>{{- site.description | escape -}}</p>
+  </div>
+</div>

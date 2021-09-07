@@ -2,49 +2,49 @@
 layout: home
 ---
 
-  <!-- This loops through the paginated posts -->
-  {% for post in paginator.posts %}
-  <a href="{{ post.url | relative_url }}" class="paginator-link-container">
-    <div class="paginator-post">
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
-      <span class="post-meta"> by {{ post.author }}</span>
-      <br>
-      <h3>
-        {{ post.title | escape }}
-      </h3>
-      {%- if site.show_excerpts -%}
-        {% if post.header %}
-          <img class="paginator-image" src={{ post.header | relative_url }} alt="{{ post.title }} header"></img>
-        {%- endif -%}
-        <p>
-          {{ post.excerpt }}
-        </p>
-      {%- endif -%}
-    </div>
-  </a>
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+<a href="{{ post.url | relative_url }}" class="button paginator-post">
+  {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+  <span class="meta">{{ post.date | date: date_format }}</span>
+  <span class="meta"> by {{ post.author }}</span>
   <br>
-  {% endfor %}
+  <h3>
+    {{ post.title | escape }}
+  </h3>
+  {%- if site.show_excerpts -%}
+    <div class="paginator-excerpt">
+      {% if post.header %}
+        <img class="paginator-excerpt-image shadow" src={{ post.header | relative_url }} alt="{{ post.title }} header"></img>
+      {%- endif -%}
+      <p>
+        {{ post.excerpt }}
+      </p>
+    </div>
+  {%- endif -%}
+</a>
+<br>
+{% endfor %}
 
-  <!-- Pagination links -->
-  {% if paginator.total_pages > 1 %}
+<!-- Pagination links -->
+{% if paginator.total_pages > 1 %}
   <div class="paginator-previous-next">
     {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}">
+    <a class="button" href="{{ paginator.previous_page_path }}">
       {%- if site.lang == "de" -%}Zurück{%- else -%}Previous{%- endif -%}
     </a>
     {% else %}
-      <span style="opacity: 0;"></span>
+      <span class="box invisible-element"></span>
     {% endif %}
-    <span>
+    <span class="box">
       {%- if site.lang == "de" -%}Seite{%- else -%}Page{%- endif -%}&nbsp;{{ paginator.page }}&nbsp;{%- if site.lang == "de" -%}von{%- else -%}of{%- endif -%}&nbsp;{{ paginator.total_pages }}
     </span>
     {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}">{%- if site.lang == "de" -%}Weiter{%- else -%}Next{%- endif -%}</a>
+    <a class="button" href="{{ paginator.next_page_path }}">{%- if site.lang == "de" -%}Weiter{%- else -%}Next{%- endif -%}</a>
     {% else %}
-      <span style="opacity: 0;"></span>
+      <span class="box invisible-element"></span>
     {% endif %}
-  {% endif %}
   </div>
+{% endif %}
 
-  {{ content }}
+{{ content }}

@@ -1,0 +1,41 @@
+/**********************************************************
+ * Variables
+ **********************************************************/
+
+ // Spacing variables
+$spacing-unit:     30px !default;
+$border-radius:     5px !default;
+
+// Font variables
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$base-font-size:   16px !default;
+$base-font-weight: 400 !default;
+$small-font-size:  $base-font-size * 0.875 !default;
+$base-line-height: 1.5 !default;
+
+// Colors
+$brand-color: #181818 !default;
+$brand-color-light: lighten($brand-color, 10%) !default;
+$brand-color-dark: darken($brand-color, 10%) !default;
+
+$background-color: #f0f0f0 !default;
+$background-color-light: lighten($background-color, 5%) !default;
+$background-color-dark: darken($background-color, 10%) !default;
+$background-color-verydark: darken($background-color, 20%) !default;
+
+$grey-color:       #828282 !default;
+$grey-color-light: lighten($grey-color, 40%) !default;
+$grey-color-dark:  darken($grey-color, 25%) !default;
+
+$text-color: black !default;
+$text-color-light: lighten($text-color, 60%) !default;
+// $text-color-light: #BEBEBE !default;
+
+
+/**********************************************************
+ * Mixins
+ **********************************************************/
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
