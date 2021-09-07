@@ -69,6 +69,7 @@
  **********************************************************/
 
  .figure, .figure-noshadow {
+  width: fit-content;
   margin-left: auto;
   margin-right: auto;
   margin-top: $spacing-unit/2;
