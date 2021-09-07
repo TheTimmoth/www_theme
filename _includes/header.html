@@ -74,6 +74,7 @@
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50 || document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
       // document.getElementById("content").style.marginTop = "200px";
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-small }}";
+      document.getElementById("navbar-logo").style.float = "auto";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
       document.getElementById("navbar-links").style.display = "none";
       document.getElementById("navbar-menu-icon").style.opacity = "1";
@@ -82,6 +83,7 @@
     } else {
       // document.getElementById("content").style.marginTop = "300px";
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
+      document.getElementById("navbar-logo").style.float = "none";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
       document.getElementById("navbar-links").style.display = "block";
       document.getElementById("navbar-menu-icon").style.opacity = "0";
