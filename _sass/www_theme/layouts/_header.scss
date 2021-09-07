@@ -59,6 +59,8 @@ $transition: 0.3s;
   // position: absolute;
   flex: auto;
   height: $logo-size-large;
+  min-height: $logo-size-large;
+  min-width: $logo-size-large;
   margin: 0 $spacing-unit;
 }
 
