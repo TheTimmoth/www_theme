@@ -92,9 +92,11 @@
     if (document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
       document.getElementById("navbar-logo").style.flex = "1 0 auto";
       document.getElementById("navbar-title").style.display = "none";
+      document.getElementById("content").style.marginTop = "150px";
     } else {
       document.getElementById("navbar-logo").style.flex = "none";
       document.getElementById("navbar-title").style.display = "block";
+      document.getElementById("content").style.marginTop = "280px";
     }
   }
 
