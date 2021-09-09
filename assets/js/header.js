@@ -9,6 +9,7 @@ var sidebarOpen = 0;
 
 function navbar_scroll() {
   resizeHeader();
+  setContentTopMargin();
 }
 
 function navbar_resize() {
@@ -23,18 +24,15 @@ function navbar_load() {
 }
 
 function setContentTopMargin() {
-  if (window.scrollY < {{ site.data.style.misc.spacing-unit[0] }} || document.documentElement.scrollTop < {{ site.data.style.misc.spacing-unit[0] }}) {
-    margin = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} - window.scrollY + 'px';
-    document.getElementById("content").style.marginTop = margin;
-  } else if (window.scrollY < scrollValue*2 || document.documentElement.scrollTop < scrollValue*2) {
-    margin = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} * 2 + 'px';
+  if (window.scrollY < 1) {
+    margin = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} + 'px';
     document.getElementById("content").style.marginTop = margin;
   }
 }
 
 function resizeHeader() {
   //Shrink header on scroll
-  if (document.body.scrollTop > scrollValue || document.documentElement.scrollTop > scrollValue) {
+  if (window.scrollY > 30) {
     //The shrinked header
 
     document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/4 + 'px 0';
@@ -90,7 +88,7 @@ function resizeHeader() {
   }
 
 
-  setContentTopMargin();
+  // setContentTopMargin();
 }
 
 function headerLoad() {
