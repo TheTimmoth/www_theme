@@ -54,7 +54,7 @@
     margin: $spacing-unit/4 $spacing-unit/4;
   }
 
-  @media screen and (max-width: $on-small) {
+  @media screen and (max-width: $on-medium) {
     .box, .button {
       display: block;
 
@@ -70,7 +70,7 @@
     }
   }
 
-  // @media screen and (max-width: $on-tiny) {
+  // @media screen and (max-width: $on-small) {
   //   margin-right: $spacing-unit*1.9;
   //   float: none;
   // }

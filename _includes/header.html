@@ -38,18 +38,34 @@
 </header>
 
 <script>
-  window.onscroll = function () { resizeHeader() };
-  window.onload = function () { headerLoad(), resizeHeader(), setContentTopMargin() };
-  window.onresize = function () { resizeHeader(), setContentTopMargin() };
+  window.onscroll = function () { navbar_scroll() };
+  window.onload = function () { navbar_load() };
+  window.onresize = function () { navbar_resize() };
 
   var sidebarOpen = 0;
 
+  function navbar_scroll() {
+    resizeHeader();
+  }
+
+  function navbar_resize() {
+    resizeHeader();
+    setContentTopMargin()
+  }
+
+  function navbar_load() {
+    resizeHeader();
+    setContentTopMargin();
+    headerLoad();
+  }
+
   function setContentTopMargin() {
     document.getElementById("content").style.marginTop = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} + 'px';
+    document.getElementById("margin").innerText = document.getElementById("content").style.marginTop;
   }
 
   function resizeHeader() {
-    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30 || document.getElementById("header-wrapper").offsetWidth < {{ site.data.style.misc.on-tiny[0] }}) {
+    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
       document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/4 + 'px 0';
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-small }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
@@ -69,44 +85,46 @@
         }
       }
     } else {
-      document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
-      document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
-      document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
+      if (document.getElementById("header-wrapper").offsetWidth > {{ site.data.style.misc.on-small[0] }}) {
 
-      // Detect wrapped navbar-links
-      if (document.getElementById("header").offsetHeight > {{ site.data.style.header.logo-size-large[0] }} + {{ site.data.style.misc.spacing-unit[0] }}) {
-        document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
-      } else {
-        document.getElementById("navbar-links").style.marginTop = "0";
-      }
+        document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
+        document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
+        document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
 
-      // Change navbar-links padding
-      if (document.getElementById("navbar-links").style.display == "flex") {
-        var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
-        for (index = 0; index < navbar_buttons.length; index++ ) {
-          navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+        // Detect wrapped navbar-links
+        if (document.getElementById("header").offsetHeight > {{ site.data.style.header.logo-size-large[0] }} + {{ site.data.style.misc.spacing-unit[0] }}) {
+          document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+        } else {
+          document.getElementById("navbar-links").style.marginTop = "0";
         }
-        {% comment %}
-        {% endcomment %}
+
+        // Change navbar-links padding
+        if (document.getElementById("navbar-links").style.display == "flex") {
+          var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
+          for (index = 0; index < navbar_buttons.length; index++ ) {
+            navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+          }
+        }
+      } else {
+        document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
+        document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-medium }}";
+        document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
       }
     }
-
-    if (document.getElementById("header-wrapper").offsetWidth < {{ site.data.style.misc.on-tiny[0] }}) {
+    if (document.getElementById("header-wrapper").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
       document.getElementById("navbar-logo").style.flex = "1 0 auto";
-      document.getElementById("navbar-title").style.display = "none";
+      // document.getElementById("navbar-title").style.display = "none";
       document.getElementById("navbar-links").style.display = "none";
       document.getElementById("navbar-menu-icon").style.display = "block";
       document.getElementById("navbar-menu-icon").style.cursor = "pointer"
       document.getElementById("navbar-menu-icon").tabIndex = "0"
-      // document.getElementById("content").style.marginTop = "150px";
     } else {
       document.getElementById("navbar-logo").style.flex = "none";
-      document.getElementById("navbar-title").style.display = "block";
+      // document.getElementById("navbar-title").style.display = "block";
       document.getElementById("navbar-links").style.display = "flex";
       document.getElementById("navbar-menu-icon").style.display = "none";
       document.getElementById("navbar-menu-icon").style.cursor = "default"
       document.getElementById("navbar-menu-icon").tabIndex = "-1"
-      // document.getElementById("content").style.marginTop = "280px";
       if (sidebarOpen == 1) {
         changeNav(document.getElementById("navbar-menu-icon"))
       }

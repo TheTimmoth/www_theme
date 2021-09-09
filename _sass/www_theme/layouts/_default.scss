@@ -10,14 +10,14 @@
   padding-right: $spacing-unit;
   // @extend %clearfix;
 
-  @media screen and (max-width: $on-medium) {
+  @media screen and (max-width: $on-large) {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
     max-width:         calc(#{$content-width} - (#{$spacing-unit}));
     padding-right: $spacing-unit / 2;
     padding-left: $spacing-unit / 2;
   }
 
-  @media screen and (max-width: $on-small) {
+  @media screen and (max-width: $on-medium) {
     margin-right: 0;
     margin-left: 0;
     padding-right: $spacing-unit / 3;
