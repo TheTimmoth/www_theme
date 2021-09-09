@@ -29,26 +29,29 @@
 }
 
 .paginator-previous-next {
-  width: fit-content;
-  padding: 5px 0;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
   text-align: center;
   color: $text-color;
   text-decoration: none;
 
   .box, .button {
-    display: inline-block;
+    flex: none;
+    align-self: center;
+    display: block;
+    height: fit-content;
     width: $spacing-unit*3;
     background-color: $background-color-dark;
-
+    margin: $spacing-unit/4 $spacing-unit/4;
     text-align: center;
   }
 
   .invisible-element {
-    display: inline-block;
+    display: block;
     width: $spacing-unit*3;
+    margin: $spacing-unit/4 $spacing-unit/4;
   }
 
   @media screen and (max-width: $on-small) {
