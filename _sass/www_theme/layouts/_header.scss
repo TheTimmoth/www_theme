@@ -45,6 +45,7 @@ $transition: 0.3s;
   font-size: $title-large;
   text-align: center;
   margin: 0 $spacing-unit/2;
+  text-decoration: none;
 
   @media screen and (max-width: $on-medium) {
     font-size: $title-small;
