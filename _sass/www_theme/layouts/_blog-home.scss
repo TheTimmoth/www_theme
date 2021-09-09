@@ -2,6 +2,13 @@
 //   // margin-left: $spacing-unit;
 // }
 
+.paginator {
+  .button:hover {
+      -webkit-transform: scale(1.02, 1.02);
+      transform: scale(1.02, 1.02);
+  }
+}
+
 .paginator-post {
   display: block;
   background-color: $background-color-light;
