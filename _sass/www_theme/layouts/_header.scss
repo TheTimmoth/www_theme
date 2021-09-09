@@ -1,14 +1,17 @@
 $transition: 0.3s;
 
 #header {
-  position: fixed; /* Sticky/fixed navbar */
+  position: fixed;
   overflow: visible;
   width: 100%;
-  // max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
   top: 0;
   z-index: 99;
   padding: $spacing-unit/2 0;
   background-color: $background-color-dark;
+
+  @media screen and (max-width: $on-medium) {
+    padding: $spacing-unit/2 0;
+  }
 }
 
 #header-wrapper {
@@ -26,9 +29,14 @@ $transition: 0.3s;
 }
 
 #navbar-logo {
-  flex: auto;
+  flex: 1 0 auto;
   height: $logo-size-large;
   margin: 0 $spacing-unit/2;
+
+  @media screen and (max-width: $on-medium) {
+    height: $logo-size-medium;
+    flex: none
+  }
 }
 
 #navbar-title {
@@ -37,6 +45,10 @@ $transition: 0.3s;
   font-size: $title-large;
   text-align: center;
   margin: 0 $spacing-unit/2;
+
+  @media screen and (max-width: $on-medium) {
+    font-size: $title-small;
+  }
 }
 
 #navbar-menu-icon {
@@ -49,6 +61,10 @@ $transition: 0.3s;
   margin: 0 $spacing-unit/2;
 
   display: none;
+
+  @media screen and (max-width: $on-medium) {
+    display: block;
+  }
 }
 
 #bar1, #bar2, #bar3 {
@@ -88,9 +104,13 @@ $transition: 0.3s;
     display: block;
     background-color: $background-color-light;
     margin: 0 $spacing-unit/3;
-    padding: $spacing-unit/6 $spacing-unit/3;
+    padding: $spacing-unit/3 $spacing-unit/2;
     min-width: $spacing-unit*2;
     text-align: center;
+  }
+
+  @media screen and (max-width: $on-medium) {
+    display: none;
   }
 }
 
@@ -119,12 +139,10 @@ $transition: 0.3s;
     text-align: center;
   }
 
-  /* When you mouse over the navigation links, change their color */
   a:hover {
     color: darken(invert($text-color), 40%);
   }
 
-  /* Position and style the close button (top right corner) */
   .closebtn {
     position: absolute;
     top: 0;

@@ -3,15 +3,11 @@
     <div id="header-float-container">
       <a id="navbar-logo" href="/"><img src={{ site.logo | relative_url }} alt="Logo" /></a>
       <a id="navbar-title" href="/">{{ site.title }}</a>
-      <div id="navbar-menu-icon" onclick="changeNav(this)">
+      <div id="navbar-menu-icon" onclick="changeNav()">
         <div id="bar1"></div>
         <div id="bar2"></div>
         <div id="bar3"></div>
       </div>
-      <!-- <svg id="navbar-menu-icon" tabindex="0" viewBox="0 0 18 15" width="18px" height="15px" onclick="openNav()">
-        <path
-          d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
-      </svg> -->
       <nav id="navbar-links">
         {%- for path in site.header_pages -%}
         {%- assign my_page = site.pages | where: "path", path | first -%}
@@ -49,23 +45,26 @@
   }
 
   function navbar_resize() {
+    setContentTopMargin();
     resizeHeader();
-    setContentTopMargin()
   }
 
   function navbar_load() {
-    resizeHeader();
     setContentTopMargin();
+    resizeHeader();
     headerLoad();
   }
 
   function setContentTopMargin() {
-    document.getElementById("content").style.marginTop = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} + 'px';
-    document.getElementById("margin").innerText = document.getElementById("content").style.marginTop;
+    margin = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} + 'px';
+    document.getElementById("content").style.marginTop = margin;
   }
 
   function resizeHeader() {
-    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    //Shrink header on scroll
+    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+      //The shrinked header
+
       document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/4 + 'px 0';
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-small }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
@@ -85,7 +84,13 @@
         }
       }
     } else {
-      if (document.getElementById("header-wrapper").offsetWidth > {{ site.data.style.misc.on-small[0] }}) {
+      //The large header
+
+      // Set element sizes based on screen-width
+      if (document.getElementById("header-wrapper").offsetWidth >= {{ site.data.style.misc.on-medium[0] }} + 1) {
+        // Properties for large screens
+
+        console.log("width", document.getElementById("header-wrapper").offsetWidth)
 
         document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
         document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
@@ -102,32 +107,18 @@
         if (document.getElementById("navbar-links").style.display == "flex") {
           var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
           for (index = 0; index < navbar_buttons.length; index++ ) {
-            navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+            navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/3 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
           }
         }
       } else {
+        // Properties for small screens
+
         document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
         document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-medium }}";
         document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
       }
-    }
-    if (document.getElementById("header-wrapper").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
-      document.getElementById("navbar-logo").style.flex = "1 0 auto";
-      // document.getElementById("navbar-title").style.display = "none";
-      document.getElementById("navbar-links").style.display = "none";
-      document.getElementById("navbar-menu-icon").style.display = "block";
-      document.getElementById("navbar-menu-icon").style.cursor = "pointer"
-      document.getElementById("navbar-menu-icon").tabIndex = "0"
-    } else {
-      document.getElementById("navbar-logo").style.flex = "none";
-      // document.getElementById("navbar-title").style.display = "block";
-      document.getElementById("navbar-links").style.display = "flex";
-      document.getElementById("navbar-menu-icon").style.display = "none";
-      document.getElementById("navbar-menu-icon").style.cursor = "default"
-      document.getElementById("navbar-menu-icon").tabIndex = "-1"
-      if (sidebarOpen == 1) {
-        changeNav(document.getElementById("navbar-menu-icon"))
-      }
+
+      setContentTopMargin();
     }
   }
 
@@ -139,23 +130,20 @@
     document.getElementById("navbar-links").style.transition = "{{ site.data.style.header.transition }}";
   }
 
-  function changeNav(x) {
-    // static var open = 0;
-    if (document.getElementById("navbar-menu-icon").style.display == "block" || sidebarOpen == 1) {
-      x.classList.toggle("change");
-      if (sidebarOpen == 1) {
-        document.getElementById("sidenav").style.width = "0";
-        document.getElementById("bar1").style.backgroundColor = "#333"
-        document.getElementById("bar2").style.backgroundColor = "#333"
-        document.getElementById("bar3").style.backgroundColor = "#333"
-        sidebarOpen = 0
-      } else {
-        document.getElementById("sidenav").style.width = "100%";
-        document.getElementById("bar1").style.backgroundColor = "#cccccc"
-        document.getElementById("bar2").style.backgroundColor = "#cccccc"
-        document.getElementById("bar3").style.backgroundColor = "#cccccc"
-        sidebarOpen = 1
-      }
+  function changeNav() {
+    document.getElementById("navbar-menu-icon").classList.toggle("change");
+    if (sidebarOpen == 1) {
+      document.getElementById("sidenav").style.width = "0";
+      document.getElementById("bar1").style.backgroundColor = "#333"
+      document.getElementById("bar2").style.backgroundColor = "#333"
+      document.getElementById("bar3").style.backgroundColor = "#333"
+      sidebarOpen = 0
+    } else {
+      document.getElementById("sidenav").style.width = "100%";
+      document.getElementById("bar1").style.backgroundColor = "#cccccc"
+      document.getElementById("bar2").style.backgroundColor = "#cccccc"
+      document.getElementById("bar3").style.backgroundColor = "#cccccc"
+      sidebarOpen = 1
     }
   }
 </script>
