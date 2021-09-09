@@ -9,37 +9,6 @@ $transition: 0.3s;
   z-index: 99;
   padding: $spacing-unit/2 0;
   background-color: $background-color-dark;
-
-  // a {
-  //   float: left;
-  //   color: black;
-  //   text-align: center;
-  //   padding: 12px;
-  //   text-decoration: none;
-  //   font-size: 18px;
-  //   line-height: 25px;
-  //   border-radius: 4px;
-  // }
-
-  // a:hover {
-  //   background-color: #ddd;
-  //   color: black;
-  // }
-
-  // a.active {
-  //   background-color: dodgerblue;
-  //   color: white;
-  // }
-
-  // @media screen and (max-width: 580px) {
-  //   padding: 20px 10px !important; /* Use !important to make sure that JavaScript doesn't override the padding on small screens */
-
-  //   a {
-  //     float: none;
-  //     display: block;
-  //     text-align: left;
-  //   }
-  // }
 }
 
 #header-wrapper {
@@ -59,27 +28,18 @@ $transition: 0.3s;
     margin: 0 $spacing-unit/2;
   }
 
-  // @media screen and (max-width: $on-small) {
-  //   * {
-  //     margin: 0 $spacing-unit/;
-  //   }
-  // }
-
   @extend %clearfix;
 }
 
 #navbar-logo {
-  // position: absolute;
   flex: auto;
   height: $logo-size-large;
-  // min-height: $logo-size-large;
-  // min-width: $logo-size-large;
 }
 
 #navbar-title {
   flex: auto;
+  flex-grow: 10 !important;
   font-size: $title-large;
-  // line-height: $logo-size-large;
   text-align: center;
 }
 
@@ -88,16 +48,10 @@ $transition: 0.3s;
   margin: 0 $spacing-unit/2;
   width: $logo-size-large/4;
   height: $logo-size-large/4;
-  opacity: 0;
   cursor: pointer;
   z-index: 200;
 
   display: none;
-
-  @media screen and (max-width: $on-small) {
-    // float: none;
-    display: block;
-  }
 }
 
 #bar1, #bar2, #bar3 {
@@ -123,6 +77,13 @@ $transition: 0.3s;
 #navbar-links {
   float: none;
   clear: both;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+
+  .a {
+    flex: none;
+  }
 
   .button {
     float: left;
@@ -130,11 +91,8 @@ $transition: 0.3s;
     background-color: $background-color-light;
     margin: 0 $spacing-unit/3;
     padding: $spacing-unit/6 $spacing-unit/3;
-  }
-
-  @media screen and (max-width: $on-small) {
-    // float: none;
-    display: none;
+    min-width: $spacing-unit*2;
+    text-align: center;
   }
 }
 
@@ -175,13 +133,5 @@ $transition: 0.3s;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-  }
-
-  @media screen and (max-width: $on-tiny) {
-    padding-top: 15px;
-
-    a {
-      font-size: 18px;
-    }
   }
 }
