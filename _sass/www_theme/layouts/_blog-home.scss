@@ -3,6 +3,7 @@
 // }
 
 .paginator {
+  margin-top: $spacing-unit;
   .button:hover {
       -webkit-transform: scale(1.02, 1.02);
       transform: scale(1.02, 1.02);
@@ -19,14 +20,10 @@
 .paginator-post {
   display: block;
   flex: 1 1 auto;
-  max-width: 40%;
+  width: 40%;
   background-color: $background-color-light;
   color: $text-color;
-  margin: $spacing-unit $spacing-unit/3 !important;
-
-  @media screen and (max-width: $on-medium) {
-    max-width: 100%;
-  }
+  margin: $spacing-unit/2 $spacing-unit/2 !important;
 }
 
 .paginator-excerpt {
