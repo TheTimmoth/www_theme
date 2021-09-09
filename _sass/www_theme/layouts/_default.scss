@@ -2,13 +2,12 @@
   flex: 1;
 }
 
-.wrapper, .main-grid {
+.wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
   margin-right: auto;
   margin-left: auto;
   padding-left: $spacing-unit;
   padding-right: $spacing-unit;
-  // @extend %clearfix;
 
   @media screen and (max-width: $on-large) {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
@@ -24,14 +23,6 @@
     padding-left: $spacing-unit / 3;
   }
 }
-
-// .main-grid {
-//   display: grid;
-//   grid-template-areas:
-//     'header  header  header  header  header'
-//     'content content content content content'
-//     'footer  footer  footer  footer  footer';
-// }
 
 .header {
   grid-area: header;
