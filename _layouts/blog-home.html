@@ -5,27 +5,29 @@ layout: home
 <!-- This loops through the paginated posts -->
 {% if paginator.posts %}
   <div class=paginator>
-    {% for post in paginator.posts %}
-    <a href="{{ post.url | relative_url }}" class="button paginator-post">
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <span class="meta">{{ post.date | date: date_format }}</span>
-      <span class="meta"> by {{ post.author }}</span>
-      <br>
-      <h3>
-        {{ post.title | escape }}
-      </h3>
-      {%- if site.show_excerpts -%}
-        <div class="paginator-excerpt">
-          {% if post.header %}
-            <img class="paginator-excerpt-image shadow" src={{ post.header | relative_url }} alt="{{ post.title }} header"></img>
-          {%- endif -%}
-          <p>
-            {{ post.excerpt }}
-          </p>
-        </div>
-      {%- endif -%}
-    </a>
-    {% endfor %}
+    <div class=paginator-flex-container>
+      {% for post in paginator.posts %}
+      <a href="{{ post.url | relative_url }}" class="button paginator-post">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="meta">{{ post.date | date: date_format }}</span>
+        <span class="meta"> by {{ post.author }}</span>
+        <br>
+        <h3>
+          {{ post.title | escape }}
+        </h3>
+        {%- if site.show_excerpts -%}
+          <div class="paginator-excerpt">
+            {% if post.header %}
+              <img class="paginator-excerpt-image shadow" src={{ post.header | relative_url }} alt="{{ post.title }} header"></img>
+            {%- endif -%}
+            <p>
+              {{ post.excerpt }}
+            </p>
+          </div>
+        {%- endif -%}
+      </a>
+      {% endfor %}
+    </div>
 
     <!-- Pagination links -->
     {% if paginator.total_pages > 1 %}
