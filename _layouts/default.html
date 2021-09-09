@@ -6,11 +6,8 @@
 <body>
 
   <div class="page-content">
+    {%- include header.html -%}
     <div class="wrapper">
-      {%- include header.html -%}
-      <nav class="menu">
-        {%- include side.html -%}
-      </nav>
       <main class="content" id="content">
         {{ content }}
       </main>

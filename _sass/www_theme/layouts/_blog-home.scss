@@ -6,6 +6,7 @@
   display: block;
   background-color: $background-color-light;
   color: $text-color;
+  margin: $spacing-unit 0 !important;
 }
 
 .paginator-excerpt {

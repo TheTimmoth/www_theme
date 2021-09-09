@@ -3,8 +3,8 @@ $transition: 0.3s;
 #header {
   position: fixed; /* Sticky/fixed navbar */
   overflow: visible;
-  width: calc(100vw - (#{$spacing-unit} * 2));
-  max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+  width: 100%;
+  // max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
   top: 0;
   z-index: 99;
   padding: $spacing-unit/2 0;
@@ -42,15 +42,28 @@ $transition: 0.3s;
   // }
 }
 
+#header-wrapper {
+  padding: 0 0 !important;
+}
+
 #header-float-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: calc(100vw - (#{$spacing-unit} * 2));
-  max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+  flex-wrap: wrap;
 
-  margin-bottom: $spacing-unit/2;
+  // margin-bottom: $spacing-unit/2;
+
+  * {
+    margin: 0 $spacing-unit/2;
+  }
+
+  // @media screen and (max-width: $on-small) {
+  //   * {
+  //     margin: 0 $spacing-unit/;
+  //   }
+  // }
 
   @extend %clearfix;
 }
@@ -61,7 +74,6 @@ $transition: 0.3s;
   height: $logo-size-large;
   // min-height: $logo-size-large;
   // min-width: $logo-size-large;
-  margin: 0 $spacing-unit;
 }
 
 #navbar-title {
@@ -73,12 +85,19 @@ $transition: 0.3s;
 
 #navbar-menu-icon {
   flex: none;
-  margin: 0 $spacing-unit;
+  margin: 0 $spacing-unit/2;
   width: $logo-size-large/4;
   height: $logo-size-large/4;
   opacity: 0;
   cursor: pointer;
   z-index: 200;
+
+  display: none;
+
+  @media screen and (max-width: $on-small) {
+    // float: none;
+    display: block;
+  }
 }
 
 #bar1, #bar2, #bar3 {
@@ -109,12 +128,11 @@ $transition: 0.3s;
     float: left;
     display: block;
     background-color: $background-color-light;
-    margin-top: $spacing-unit/3;
-    margin-bottom: $spacing-unit/3;
+    margin: 0 $spacing-unit/3;
   }
 
   @media screen and (max-width: $on-small) {
-    float: none;
+    // float: none;
     display: none;
   }
 }

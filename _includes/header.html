@@ -1,55 +1,29 @@
-{%- comment -%}
-<div class="header-logo" >
-  <a rel="author" href="{{"/" | relative_url }}">
-    <img id="header-logo" src={{ site.logo | relative_url }} alt="Logo" />
-  </a>
-</div>
-<div class="header-title" id="header-title">
-  <a id="header-title-text" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-</div>
-
-<script>
-  flexFont = function () {
-    var title = document.getElementById("header-title");
-    var logo = document.getElementById("header-logo");
-    var fontSize = Math.atan(((title.offsetWidth + 400)/100) * 0.05) * 100;
-    title.style.fontSize = fontSize + 'pt';
-    title.style.lineHeight = logo.offsetWidth + 'px';
-  };
-
-  window.onload = function (event) {
-    flexFont();
-  };
-  window.onresize = function (event) {
-    flexFont();
-  };
-</script>
-{%- endcomment -%}
-
 <header id="header">
-  <div id="header-float-container">
-    <a id="navbar-logo" href="/"><img src={{ site.logo | relative_url }} alt="Logo" /></a>
-    <a id="navbar-title" href="/">{{ site.title }}</a>
-    <div id="navbar-menu-icon" onclick="changeNav(this)">
-      <div id="bar1"></div>
-      <div id="bar2"></div>
-      <div id="bar3"></div>
-    </div>
-    <!-- <svg id="navbar-menu-icon" tabindex="0" viewBox="0 0 18 15" width="18px" height="15px" onclick="openNav()">
-      <path
-        d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
-    </svg> -->
-  </div>
-  <div id="navbar-links">
-    {%- for path in site.header_pages -%}
-      {%- assign my_page = site.pages | where: "path", path | first -%}
-      {%- if my_page.title-%}
+  <div class="wrapper" id="header-wrapper">
+    <div id="header-float-container">
+      <a id="navbar-logo" href="/"><img src={{ site.logo | relative_url }} alt="Logo" /></a>
+      <a id="navbar-title" href="/">{{ site.title }}</a>
+      <div id="navbar-menu-icon" onclick="changeNav(this)">
+        <div id="bar1"></div>
+        <div id="bar2"></div>
+        <div id="bar3"></div>
+      </div>
+      <!-- <svg id="navbar-menu-icon" tabindex="0" viewBox="0 0 18 15" width="18px" height="15px" onclick="openNav()">
+        <path
+          d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+      </svg> -->
+      <nav id="navbar-links">
+        {%- for path in site.header_pages -%}
+        {%- assign my_page = site.pages | where: "path", path | first -%}
+        {%- if my_page.title-%}
         <a class="button" href={{ my_page.url | relative_url }}>{{ my_page.title | escape }}</a>
-      {%- endif -%}
-    {%- endfor -%}
+        {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    </div>
   </div>
 
-  <div id="sidenav">
+  <nav id="sidenav">
     {%- for path in site.header_pages -%}
     {%- assign my_page = site.pages | where: "path", path | first -%}
     {%- if my_page.title == "About" or my_page.title == "Impressum" -%}
@@ -60,49 +34,68 @@
       }}</a>
     {%- endif -%}
     {%- endfor -%}
-  </div>
+  </nav>
 </header>
 
 <script>
   window.onscroll = function () { resizeHeader() };
-  window.onload = function () { headerLoad() };
-  window.onresize = function () { resizeHeader() };
+  window.onload = function () { headerLoad(), resizeHeader(), setContentTopMargin() };
+  window.onresize = function () { resizeHeader(), setContentTopMargin() };
 
   var sidebarOpen = 0;
 
+  function setContentTopMargin() {
+    document.getElementById("content").style.marginTop = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} + 'px';
+  }
+
   function resizeHeader() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50 || document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
+    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30 || document.getElementById("header-wrapper").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
+      document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/4 + 'px 0';
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-small }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
+
+      // Detect wrapped navbar-links
+      if (document.getElementById("header").offsetHeight > {{ site.data.style.header.logo-size-small[0] }} + {{ site.data.style.misc.spacing-unit[0] }}) {
+        document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+      } else {
+        document.getElementById("navbar-links").style.marginTop = "0";
+      }
+    } else {
+      document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
+      document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
+      document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
+
+      // Detect wrapped navbar-links
+      if (document.getElementById("header").offsetHeight > {{ site.data.style.header.logo-size-large[0] }} + {{ site.data.style.misc.spacing-unit[0] }}) {
+        document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+      } else {
+        document.getElementById("navbar-links").style.marginTop = "0";
+      }
+    }
+
+    if (document.getElementById("header-wrapper").offsetWidth < {{ site.data.style.misc.on-tiny[0] }}) {
+      document.getElementById("navbar-logo").style.flex = "1 0 auto";
+      document.getElementById("navbar-title").style.display = "none";
       document.getElementById("navbar-links").style.display = "none";
       document.getElementById("navbar-menu-icon").style.opacity = "1";
       document.getElementById("navbar-menu-icon").style.cursor = "pointer"
       document.getElementById("navbar-menu-icon").tabIndex = "0"
+      // document.getElementById("content").style.marginTop = "150px";
     } else {
-      document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
-      document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
+      document.getElementById("navbar-logo").style.flex = "none";
+      document.getElementById("navbar-title").style.display = "block";
       document.getElementById("navbar-links").style.display = "block";
       document.getElementById("navbar-menu-icon").style.opacity = "0";
       document.getElementById("navbar-menu-icon").style.cursor = "default"
       document.getElementById("navbar-menu-icon").tabIndex = "-1"
+      // document.getElementById("content").style.marginTop = "280px";
       if (sidebarOpen == 1) {
         changeNav(document.getElementById("navbar-menu-icon"))
       }
     }
-    if (document.getElementById("header").offsetWidth < {{ site.data.style.misc.on-small[0] }}) {
-      document.getElementById("navbar-logo").style.flex = "1 0 auto";
-      document.getElementById("navbar-title").style.display = "none";
-      document.getElementById("content").style.marginTop = "150px";
-    } else {
-      document.getElementById("navbar-logo").style.flex = "none";
-      document.getElementById("navbar-title").style.display = "block";
-      document.getElementById("content").style.marginTop = "280px";
-    }
   }
 
   function headerLoad() {
-    resizeHeader();
-
     document.getElementById("navbar-logo").style.transition = "{{ site.data.style.header.transition }}";
     document.getElementById("navbar-title").style.transition = "{{ site.data.style.header.transition }}";
     document.getElementById("navbar-title").style.transition = "{{ site.data.style.header.transition }}";

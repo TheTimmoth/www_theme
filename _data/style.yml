@@ -1,12 +1,13 @@
 misc:
-  content-width: [800, px]
+  content-width: [1000, px]
   on-medium: [800, px]
-  on-small: [500, px]
-  on-tiny: [300, px]
+  on-small: [600, px]
+  on-tiny: [400, px]
+  spacing-unit: [30, px]
 
 header:
   logo-size-large: [150, px]
-  logo-size-small: [80, px]
+  logo-size-small: [50, px]
   title-large: [30, pt]
   title-small: [20, pt]
   transition: [0.1, s]
