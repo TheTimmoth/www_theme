@@ -5,18 +5,15 @@
 
 <body>
   <script type="text/javascript" src="/assets/js/header.js" ></script>
-  <div class="page-content">
-    {%- include header.html -%}
-    <div class="wrapper">
-      <main class="content" id="content">
-        {{ content }}
-      </main>
-      <footer class="footer">
-        {%- include footer.html -%}
-      </footer>
-    </div>
+  {%- include header.html -%}
+  <div class="wrapper">
+    <main class="content" id="content">
+      {{ content }}
+    </main>
+    <footer class="footer">
+      {%- include footer.html -%}
+    </footer>
   </div>
-
 </body>
 
 </html>

@@ -12,4 +12,4 @@ header:
   logo-size-small: [50, px]
   title-large: [30, pt]
   title-small: [15, pt]
-  transition: [0.1, s]
+  transition: [0.05, s]

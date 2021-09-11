@@ -6,54 +6,67 @@ window.onresize = function () { navbar_resize() };
 
 const scrollValue = 80;
 var sidebarOpen = 0;
+const HeaderStates = {
+  Uninitialized: 0,
+  Big: 1,
+  Small: 2
+}
+var headerState = HeaderStates.Uninitialized;
+var marginCalculated = 0;
 
 function navbar_scroll() {
   resizeHeader();
-  setContentTopMargin();
+  setContentTopMargin_timer();
 }
 
 function navbar_resize() {
-  setContentTopMargin();
   resizeHeader();
+  setContentTopMargin(true);
 }
 
 function navbar_load() {
-  setContentTopMargin();
   resizeHeader();
-  headerLoad();
+  setContentTopMargin(false);
 }
 
-function setContentTopMargin() {
-  if (window.scrollY < 1) {
+function setContentTopMargin_timer() {
+  if (window.scrollY < scrollValue && marginCalculated == 0) {
+    setTimeout(setContentTopMargin, {{ site.data.style.header.transition[0] }}*1000, true);
+    marginCalculated = 1;
+  } else if (marginCalculated == 1 && window.scrollY >= scrollValue) {
+    marginCalculated = 0;
+  }
+}
+
+function setContentTopMargin(saveMargin) {
+  var margin = sessionStorage.getItem("headerMargin");
+  if (margin == null || saveMargin == true) {
     margin = document.getElementById("header").offsetHeight + {{ site.data.style.misc.spacing-unit[0] }} + 'px';
-    document.getElementById("content").style.marginTop = margin;
+  }
+  console.log("margin", margin)
+  document.getElementById("content").style.marginTop = margin;
+  if (saveMargin == true || window.scrollY == 0) {
+    sessionStorage.setItem("headerMargin", margin)
   }
 }
 
 function resizeHeader() {
   //Shrink header on scroll
-  if (window.scrollY > 30) {
+  if (window.scrollY > scrollValue) {
     //The shrinked header
 
     document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/4 + 'px 0';
     document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-small }}";
     document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
 
-    // Detect wrapped navbar-links
-    if (document.getElementById("header").offsetHeight > {{ site.data.style.header.logo-size-small[0] }} + {{ site.data.style.misc.spacing-unit[0] }}) {
-      document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
-    } else {
-      document.getElementById("navbar-links").style.marginTop = "0";
+    // Change navbar-links padding
+    var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
+    for (index = 0; index < navbar_buttons.length; index++ ) {
+      navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/6 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/3 + 'px';
     }
 
-    // Change navbar-links padding
-    if (document.getElementById("navbar-links").style.display == "flex") {
-      var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
-      for (index = 0; index < navbar_buttons.length; index++ ) {
-        navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/6 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/3 + 'px';
-      }
-    }
-  } else {
+    headerState = HeaderStates.Small;
+  } else if (window.scrollY <= scrollValue) {
     //The large header
 
     // Set element sizes based on screen-width
@@ -64,19 +77,10 @@ function resizeHeader() {
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-large }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-large }}";
 
-      // Detect wrapped navbar-links
-      if (document.getElementById("header").offsetHeight > {{ site.data.style.header.logo-size-large[0] }} + {{ site.data.style.misc.spacing-unit[0] }}) {
-        document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
-      } else {
-        document.getElementById("navbar-links").style.marginTop = "0";
-      }
-
       // Change navbar-links padding
-      if (document.getElementById("navbar-links").style.display == "flex") {
-        var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
-        for (index = 0; index < navbar_buttons.length; index++ ) {
-          navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/3 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
-        }
+      var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
+      for (index = 0; index < navbar_buttons.length; index++ ) {
+        navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
       }
     } else {
       // Properties for small screens
@@ -84,19 +88,16 @@ function resizeHeader() {
       document.getElementById("header").style.padding = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px 0';
       document.getElementById("navbar-logo").style.height = "{{ site.data.style.header.logo-size-medium }}";
       document.getElementById("navbar-title").style.fontSize = "{{ site.data.style.header.title-small }}";
+
+      // Change navbar-links padding
+      var navbar_buttons = document.getElementById("navbar-links").querySelectorAll(".button");
+      for (index = 0; index < navbar_buttons.length; index++ ) {
+        navbar_buttons[index].style.padding = {{ site.data.style.misc.spacing-unit[0] }}/6 + 'px ' + {{ site.data.style.misc.spacing-unit[0] }}/3 + 'px';
+      }
     }
+    headerState = HeaderStates.Big;
   }
-
-
-  // setContentTopMargin();
-}
-
-function headerLoad() {
-  document.getElementById("navbar-logo").style.transition = "{{ site.data.style.header.transition }}";
-  document.getElementById("navbar-title").style.transition = "{{ site.data.style.header.transition }}";
-  document.getElementById("navbar-title").style.transition = "{{ site.data.style.header.transition }}";
-  document.getElementById("navbar-links").style.transition = "{{ site.data.style.header.transition }}";
-  document.getElementById("navbar-links").style.transition = "{{ site.data.style.header.transition }}";
+  setTimeout(changeLinks, {{ site.data.style.header.transition[0] }}*1000, true);
 }
 
 function changeNav() {
@@ -113,5 +114,24 @@ function changeNav() {
     document.getElementById("bar2").style.backgroundColor = "#cccccc"
     document.getElementById("bar3").style.backgroundColor = "#cccccc"
     sidebarOpen = 1
+  }
+}
+
+function changeLinks() {
+  // Detect wrapped navbar-links
+  var headerSize = 0;
+  if (document.getElementById("header-wrapper").offsetWidth >= {{ site.data.style.misc.on-medium[0] }} + 1) {
+    headerSize = {{ site.data.style.header.logo-size-large[0] }};
+  } else {
+    headerSize = {{ site.data.style.header.logo-size-small[0] }};
+  }
+  headerSize += {{ site.data.style.misc.spacing-unit[0] }};
+
+
+  // Detect wrapped navbar-links
+  if (document.getElementById("header").offsetHeight > headerSize) {
+    document.getElementById("navbar-links").style.marginTop = {{ site.data.style.misc.spacing-unit[0] }}/2 + 'px';
+  } else {
+    document.getElementById("navbar-links").style.marginTop = "0";
   }
 }

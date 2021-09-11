@@ -1,5 +1,3 @@
-$transition: 0.3s;
-
 #header {
   position: fixed;
   overflow: visible;
@@ -32,6 +30,7 @@ $transition: 0.3s;
   flex: 1 0 auto;
   height: $logo-size-large;
   margin: 0 $spacing-unit/2;
+  transition: $transition;
 
   @media screen and (max-width: $on-medium) {
     height: $logo-size-medium;
@@ -46,6 +45,7 @@ $transition: 0.3s;
   text-align: center;
   margin: 0 $spacing-unit/2;
   text-decoration: none;
+  transition: $transition;
 
   @media screen and (max-width: $on-medium) {
     font-size: $title-small;
@@ -73,7 +73,7 @@ $transition: 0.3s;
   height: 4px;
   background-color: #333;
   margin: 6px 0;
-  transition: 0.4s;
+  transition: calc(#{$transition} * 4);
 }
 
 .change #bar1 {
@@ -95,6 +95,7 @@ $transition: 0.3s;
   display: flex;
   justify-content: center;
   margin: 0 $spacing-unit/2;
+  transition: $transition;
 
   .a {
     flex: none;
@@ -125,7 +126,7 @@ $transition: 0.3s;
   background-color: $background-color-dark;
   overflow-x: hidden;
   padding-top: $spacing-unit*3;
-  transition: 0.5s;
+  transition: calc(#{$transition} * 5);
   background-color: black;
   opacity: 0.9;
 
@@ -136,7 +137,7 @@ $transition: 0.3s;
     font-size: 25px;
     color: invert($text-color);
     display: block;
-    transition: 0.3s;
+    transition: calc(#{$transition} * 3);
     text-align: center;
   }
 
