@@ -3,6 +3,7 @@
 // window.onscroll = function () { navbar_scroll() };
 // window.onload = function () { navbar_load() };
 // window.onresize = function () { navbar_resize() };
+window.onresize = function () { closeNav() };
 
 // const scrollValue = 50;
 var sidebarOpen = 0;
@@ -99,6 +100,12 @@ var sidebarOpen = 0;
 //   }
 //   setTimeout(changeLinks, {{ site.data.style.header.transition[0] }}*1000, true);
 // }
+
+function closeNav() {
+  if (document.getElementById("header-wrapper").offsetWidth >= {{ site.data.style.misc.on-medium[0] }} + 1 && sidebarOpen == 1) {
+    changeNav();
+  }
+}
 
 function changeNav() {
   document.getElementById("navbar-menu-icon").classList.toggle("change");

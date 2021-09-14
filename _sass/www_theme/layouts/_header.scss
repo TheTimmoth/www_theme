@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 99;
-  padding: $spacing-unit/8 $spacing-unit/3;
+  padding: $spacing-unit/8 $spacing-unit/2;
   background-color: $background-color-dark;
 }
 
@@ -129,8 +129,8 @@
   padding-top: $spacing-unit*3;
   transition: calc(#{$transition} * 5);
   background-color: black;
-  opacity: 0.9;
-  display: none;
+  opacity: 0.95;
+  // display: none;
 
   /* The navigation menu links */
   a {
@@ -147,7 +147,11 @@
     color: darken(invert($text-color), 40%);
   }
 
-  @media screen and (max-width: $on-medium) {
-    display: block;
+  .active {
+    background-color: lighten(black, 30%);
   }
+
+  // @media screen and (max-width: $on-medium) {
+  //   display: block;
+  // }
 }
