@@ -25,6 +25,10 @@
   height: $logo-size-medium;
   transition: $transition;
 
+  img {
+    max-width: unset;
+  }
+
   @media screen and (max-width: $on-medium) {
     height: $logo-size-small;
     flex: none
