@@ -1,6 +1,9 @@
 <figure class="figure-noshadow">
-  <img src="{{ include.url }}" {% if include.width %}style="width={{include.width}}"{% endif %} alt="{{ include.caption }}">
+  <img src="{{ include.url }}" {% if include.width %}style="width: {{ include.width }};"{% endif %} alt="{{ include.caption }}">
 </figure>
+
+{{ include.width }}
+{{ include.caption }}
 
 {%- comment -%}
 {% include figure-noshadow.html url=page.qr_png caption="QR Code generated as PNG" %}

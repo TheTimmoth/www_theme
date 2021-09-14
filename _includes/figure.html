@@ -1,7 +1,13 @@
 <figure class="figure">
-  <img class="shadow" src="{{ include.url }}" alt="{{ include.caption }}">
+  <img class="shadow" {% if include.width %}style="width: {{ include.width }};"{% endif %} src="{{ include.url }}" alt="{{ include.caption }}">
   <figcaption>{{ include.caption }}</figcaption>
 </figure>
+
+{{ include.width }}
+
+{{ include.caption }}
+
+{% if include.width %}style="width={{ include.width }}"{% endif %}
 
 {%- comment -%}
 {% include figure.html url=page.qr_png caption="QR Code generated as PNG" %}
