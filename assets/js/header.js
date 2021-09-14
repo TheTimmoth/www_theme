@@ -4,7 +4,7 @@ window.onscroll = function () { navbar_scroll() };
 window.onload = function () { navbar_load() };
 window.onresize = function () { navbar_resize() };
 
-const scrollValue = 80;
+const scrollValue = 50;
 var sidebarOpen = 0;
 const HeaderStates = {
   Uninitialized: 0,

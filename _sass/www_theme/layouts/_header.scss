@@ -29,7 +29,7 @@
 #navbar-logo {
   flex: 1 0 auto;
   height: $logo-size-large;
-  margin: 0 $spacing-unit/2;
+  // margin: 0 $spacing-unit/2;
   transition: $transition;
 
   @media screen and (max-width: $on-medium) {
@@ -54,12 +54,12 @@
 
 #navbar-menu-icon {
   flex: none;
-  margin: 0 $spacing-unit/2;
+  // margin: 0 $spacing-unit/2;
   width: $logo-size-large/4;
   height: $logo-size-large/4;
   cursor: pointer;
   z-index: 200;
-  margin: 0 $spacing-unit/2;
+  // margin: 0 $spacing-unit/2;
 
   display: none;
 
@@ -77,14 +77,12 @@
 }
 
 .change #bar1 {
-  -webkit-transform: rotate(-45deg) translate(-6px, 6px);
   transform: rotate(-45deg) translate(-6px, 6px);
 }
 
 .change #bar2 {opacity: 0;}
 
 .change #bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
@@ -94,7 +92,7 @@
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  margin: 0 $spacing-unit/2;
+  // margin: 0 $spacing-unit/2;
   transition: $transition;
 
   .a {

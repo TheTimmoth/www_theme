@@ -51,6 +51,11 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-toc
+  - jekyll-autoprefixer
+
+autoprefixer:
+  browsers:
+    - last 2 versions
 
 # Exclude from processing.
 # The following items will not be processed, by default.
