@@ -2,22 +2,21 @@
   max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
   margin-right: auto;
   margin-left: auto;
-  padding-left: $spacing-unit;
-  padding-right: $spacing-unit;
 
   @media screen and (max-width: $on-large) {
     max-width: calc(#{$content-width} - (#{$spacing-unit}));
-    padding-right: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
   }
 
   @media screen and (max-width: $on-medium) {
     margin-right: 0;
     margin-left: 0;
-    padding-right: $spacing-unit / 3;
-    padding-left: $spacing-unit / 3;
   }
 }
+
+.default-wrapper {
+  margin: 0 $spacing-unit/2;
+}
+
 
 .header {
   grid-area: header;
