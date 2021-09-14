@@ -1,5 +1,7 @@
+{{ }}
+
 <figure class="figure">
-  <img class="shadow" src="{{ include.url }}" alt="{{ include.caption }}">
+  <img class="shadow" {% if include.width %}style="width={{include.width}}"{% endif %} src="{{ include.url }}" alt="{{ include.caption }}">
 </figure>
 
 {%- comment -%}
