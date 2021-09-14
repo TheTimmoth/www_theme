@@ -107,6 +107,11 @@
     text-align: center;
   }
 
+  .active {
+    background-color: darken($background-color-light, 50%);
+    color: invert($text-color);
+  }
+
   @media screen and (max-width: $on-medium) {
     display: none;
   }
