@@ -7,9 +7,9 @@ misc:
   spacing-unit: [30, px]
 
 header:
-  logo-size-large: [150, px]
-  logo-size-medium: [75, px]
-  logo-size-small: [50, px]
-  title-large: [30, pt]
+  logo-size-large: [75, px]
+  logo-size-medium: [55, px]
+  logo-size-small: [40, px]
+  title-large: [20, pt]
   title-small: [15, pt]
   transition: [0.05, s]

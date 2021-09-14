@@ -1,15 +1,9 @@
 #header {
-  position: fixed;
-  overflow: visible;
-  width: 100%;
+  position: sticky;
   top: 0;
   z-index: 99;
-  padding: $spacing-unit/2 0;
+  padding: $spacing-unit/8 $spacing-unit/8;
   background-color: $background-color-dark;
-
-  @media screen and (max-width: $on-medium) {
-    padding: $spacing-unit/2 0;
-  }
 }
 
 #header-wrapper {
@@ -28,12 +22,11 @@
 
 #navbar-logo {
   flex: 1 0 auto;
-  height: $logo-size-large;
-  // margin: 0 $spacing-unit/2;
+  height: $logo-size-medium;
   transition: $transition;
 
   @media screen and (max-width: $on-medium) {
-    height: $logo-size-medium;
+    height: $logo-size-small;
     flex: none
   }
 }
@@ -54,12 +47,10 @@
 
 #navbar-menu-icon {
   flex: none;
-  // margin: 0 $spacing-unit/2;
-  width: $logo-size-large/4;
-  height: $logo-size-large/4;
   cursor: pointer;
   z-index: 200;
-  // margin: 0 $spacing-unit/2;
+  width: fit-content;
+  height: fit-content;
 
   display: none;
 
@@ -80,7 +71,10 @@
   transform: rotate(-45deg) translate(-6px, 6px);
 }
 
-.change #bar2 {opacity: 0;}
+.change #bar2 {
+  opacity: 0;
+  transition: 0;
+}
 
 .change #bar3 {
   transform: rotate(45deg) translate(-8px, -8px);
@@ -103,8 +97,8 @@
     float: left;
     display: block;
     background-color: $background-color-light;
-    margin: 0 $spacing-unit/3;
-    padding: $spacing-unit/3 $spacing-unit/2;
+    margin: 0 $spacing-unit/6;
+    padding: $spacing-unit/4 $spacing-unit/6;
     min-width: $spacing-unit*2;
     text-align: center;
   }
@@ -127,6 +121,7 @@
   transition: calc(#{$transition} * 5);
   background-color: black;
   opacity: 0.9;
+  display: none;
 
   /* The navigation menu links */
   a {
@@ -143,11 +138,7 @@
     color: darken(invert($text-color), 40%);
   }
 
-  .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+  @media screen and (max-width: $on-medium) {
+    display: block;
   }
 }

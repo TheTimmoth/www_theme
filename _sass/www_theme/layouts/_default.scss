@@ -30,11 +30,7 @@
 .content {
   grid-area: content;
   min-height: 33vh;
-  margin-top: calc(#{$logo-size-large} + #{$spacing-unit}*4);
-
-  @media screen and (max-width: $on-medium) {
-    margin-top: calc(#{$logo-size-medium} + #{$spacing-unit}*4);
-  }
+  padding-top: $spacing-unit/2;
 }
 
 .footer {
