@@ -17,7 +17,7 @@ $brand-color: #181818 !default;
 $brand-color-light: lighten($brand-color, 10%) !default;
 $brand-color-dark: darken($brand-color, 10%) !default;
 
-$background-color: #f0f0f0 !default;
+$background-color: rgba(#f0f0f0, 1) !default;
 $background-color-light: lighten($background-color, 5%) !default;
 $background-color-dark: darken($background-color, 10%) !default;
 $background-color-verydark: darken($background-color, 20%) !default;

@@ -128,27 +128,34 @@
   overflow-x: hidden;
   padding-top: $spacing-unit*3;
   transition: calc(#{$transition} * 5);
-  background-color: black;
-  opacity: 0.95;
+  background-color: rgba(0,0,0,0.92);
   // display: none;
 
   /* The navigation menu links */
-  a {
-    padding: 8px 8px 8px 32px;
+  .page-link {
+    padding: $spacing-unit/3 0;
     text-decoration: none;
     font-size: 25px;
     color: invert($text-color);
     display: block;
     transition: calc(#{$transition} * 3);
     text-align: center;
+    z-index: 151;
   }
 
-  a:hover {
-    color: darken(invert($text-color), 40%);
+  .page-link {
+    &:hover {
+      background-color: $background-color-light;
+      color: $text-color !important;
+    }
   }
 
   .active {
-    background-color: lighten(black, 30%);
+    background-color: lighten(rgba(0,0,0,1), 50%);
+    &:hover {
+      color: $text-color !important;
+      background-color: $background-color-light;
+    }
   }
 
   // @media screen and (max-width: $on-medium) {
